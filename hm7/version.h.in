@@ -1,0 +1,6 @@
+#ifndef VERSION_H
+#define VERSION_H
+
+#define OTUS_HW7_VERSION "@hw7_VERSION@"
+
+#endif // VERSION_H

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <sstream>
+#include <string>
 
 
 std::string CommandParser::generateFileNameWithCurrentTime() const
@@ -51,6 +52,13 @@ void CommandParser::init()
     m_fileWriter.init();
 }
 
+bool CommandParser::cmdIsOnlySpace(const std::string &cmd) const 
+{
+    auto truncSpace = cmd;
+    std::erase(truncSpace, ' ');
+    return truncSpace.empty();
+}
+
 void CommandParser::parse(const std::string &cmd)
 {
     if (cmd.empty())
@@ -58,6 +66,11 @@ void CommandParser::parse(const std::string &cmd)
         std::cerr << "Encountered empty command";
         return;
     }
+    if (cmdIsOnlySpace(cmd))
+    {
+        return;
+    }
+
     if (m_state.modifyState(cmd))
     {
         if (m_state.isDynamicModeStarting()

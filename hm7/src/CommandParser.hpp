@@ -37,6 +37,8 @@ private:
      */
     void completePackage();
 
+    bool cmdIsOnlySpace(const std::string &cmd) const;
+
 public:
     CommandParser(const int packageSize)
      : m_packageSize(packageSize)
